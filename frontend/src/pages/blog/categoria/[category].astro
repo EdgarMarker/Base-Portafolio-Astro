@@ -1,0 +1,48 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "../../../layouts/Layout.astro";
+import {
+  getDataArticlesByCategorySlug,
+  getDataArticlesCategory,
+  getDataArticlesCategoryBySlug,
+} from "../../../_data/blog-articles";
+import type { Category } from "../../../_types/_globals";
+import type { Articles } from "../../../_types/blog-articles";
+import CardProduct from "../../../components/ui/CardProduct";
+import { Picture } from "astro:assets";
+
+// getStaticPaths to obtain all slugs
+export const getStaticPaths: GetStaticPaths = async () => {
+  const category = await getDataArticlesCategory();
+  return category.map((category: Category) => ({
+    params: { category: category.slug.current },
+  }));
+};
+
+//Current product data page
+const { category } = Astro.params;
+const dataCategory: Category = await getDataArticlesCategoryBySlug(category);
+const dataArticlesByCategory: Articles[] =
+  await getDataArticlesByCategorySlug(category);
+---
+
+<Layout>
+  <h1>{dataCategory.title}</h1>
+  <ul class="listado__x3" role="list">
+    {
+      dataArticlesByCategory.map((data) => (
+        <CardProduct className="card__article" data={data} from="blog">
+          <Picture
+            src={data.mainImage.media.url}
+            alt={data.mainImage.alt.altText}
+            formats={["webp", "avif"]}
+            fallbackFormat="jpeg"
+            inferSize={true}
+            quality={"high"}
+            densities={[1.5, 2]}
+          />
+        </CardProduct>
+      ))
+    }
+  </ul>
+</Layout>

@@ -1,0 +1,57 @@
+---
+import "../../styles/footer.css";
+
+import { Picture } from "astro:assets";
+import { dataLink } from "../nav/dataLinks";
+import { getDataCompany, getDataCompanySocial } from "../../_data/company";
+import type { Company, Social } from "../../_types/company";
+
+const dataFooter: Company = await getDataCompany();
+const dataSocial: Social = await getDataCompanySocial();
+---
+
+<footer id="footer">
+  <ul class="listado__x4" role="list">
+    <li>
+      <h3>Mapa del sitio</h3>
+      <ul role="list">
+        {
+          dataLink.map((nav) => (
+            <li>
+              <a href={nav.link}>{nav.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </li>
+    <li class="footer__contact">
+      <h3>Datos de contacto</h3>
+      <a href={`tel:${dataFooter.brandPhone}`}>T:{dataFooter.brandPhone}</a>
+      <a href={`mailto:${dataFooter.brandEmail}`}>C:{dataFooter.brandEmail}</a>
+      <a href={`${dataFooter.brandAddressUrl}`}>D:{dataFooter.brandAddress}</a>
+    </li>
+    <li class="footer__social">
+      <h3>Síguenos</h3>
+      <a href={dataSocial.facebook}>Facebook</a>
+      <a href={dataSocial.instagram}>Instagram</a>
+    </li>
+    <li class="footer__logo">
+      <a href="/">
+        <Picture
+          src={dataFooter.footLogo.media.url}
+          alt={dataFooter.footLogo.alt.altText}
+          formats={["svg", "png"]}
+          fallbackFormat="svg"
+          inferSize={true}
+          quality={"high"}
+          densities={[1.5, 2]}
+        />
+      </a>
+      <a href="/aviso-de-privacidad">Aviso de privacidad</a>
+    </li>
+  </ul>
+  <div>
+    {dataFooter.brandName} © Todos los derechos reservados | Sitio web creado por
+    <a href="https://marker.com.mx/" target="_blank"> MARKER branding </a>
+  </div>
+</footer>

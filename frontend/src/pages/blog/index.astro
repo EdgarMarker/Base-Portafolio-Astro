@@ -1,0 +1,63 @@
+---
+import "../../styles/blog.css";
+import { getDataBlogPage } from "../../_data/blog";
+import { getDataArticles } from "../../_data/blog-articles";
+import Picture from "astro/components/Picture.astro";
+import type { Blog } from "../../_types/blog";
+import type { Articles } from "../../_types/blog-articles";
+import PortableTextCustom from "../../components/ui/PortableTextCustom";
+import Layout from "../../layouts/Layout.astro";
+import CardProduct from "../../components/ui/CardProduct";
+
+const dataBlog: Blog = await getDataBlogPage();
+const dataBlogArticles: Articles[] = await getDataArticles();
+---
+
+<Layout
+  title={dataBlog.titleseo}
+  desc={dataBlog.descseo}
+  keywords={dataBlog.keyseo}
+>
+  <section id="blog">
+    <div class="column__2">
+      <div class="col__left">
+        <h1>{dataBlog.heroH1}</h1>
+        <PortableTextCustom data={dataBlog.heroH2} client:only="react" />
+        <p>{dataBlog.heroP}</p>
+        <div class="btn">{dataBlog.heroBtn}</div>
+      </div>
+      <div class="col__right">
+        <Picture
+          src={dataBlog.heroImg.media.url}
+          alt={dataBlog.heroImg.alt.altText}
+          formats={["webp", "avif"]}
+          fallbackFormat="jpeg"
+          inferSize={true}
+          quality={"high"}
+          densities={[1.5, 2]}
+        />
+      </div>
+    </div>
+  </section>
+  <section id="blog__articles">
+    <ul class="listado__x3">
+      {
+        dataBlogArticles.map((data) => (
+          <CardProduct className="card__article" data={data} from="blog">
+            <Picture
+              src={data.mainImage.media.url}
+              alt={data.mainImage.alt.altText}
+              formats={["webp", "avif"]}
+              fallbackFormat="jpeg"
+              inferSize={true}
+              quality={"high"}
+              densities={[1.5, 2]}
+            />
+          </CardProduct>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>
+
+<!-- -->

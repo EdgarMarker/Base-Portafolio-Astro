@@ -1,0 +1,25 @@
+#blog {
+    padding: 5%;
+
+    .column__2 {
+        .col__left {
+            justify-content: center;
+        }
+
+        .col__right {
+            picture {
+                height: 80vh;
+
+                img {
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+        }
+    }
+}
+
+#blog__articles {
+    padding: 5%;
+}

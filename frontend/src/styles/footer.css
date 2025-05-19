@@ -1,0 +1,44 @@
+#footer {
+    padding: 5%;
+    background-color: #1E60A6;
+    color: white;
+
+    h3,
+    p,
+    a {
+        color: white;
+    }
+
+    a {
+        margin: 0;
+    }
+
+    ul {
+
+        .footer__contact,
+        .footer__social,
+        .footer__logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer__logo {
+            justify-content: space-around;
+            picture {
+                width: 150px;
+                aspect-ratio: 1/1;
+
+                img {
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+        }
+
+        h3 {
+            color: #FF692E;
+            font-weight: bold;
+        }
+    }
+}

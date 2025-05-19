@@ -1,0 +1,103 @@
+---
+import "../styles/inicio.css";
+
+import Picture from "astro/components/Picture.astro";
+import { getDataInicio } from "../_data/inicio";
+import type { Inicio } from "../_types/inicio";
+import Welcome from "../components/Welcome.astro";
+import Layout from "../layouts/Layout.astro";
+import PortableTextCustom from "../components/ui/PortableTextCustom";
+import CardProduct from "../components/ui/CardProduct";
+
+const dataInicio: Inicio = await getDataInicio();
+---
+
+<Layout
+  title={dataInicio.titleseo}
+  desc={dataInicio.descseo}
+  keywords={dataInicio.keyseo}
+>
+  <section id="hero">
+    <div class="column__2">
+      <div class="col__left">
+        <h1>{dataInicio.heroH1}</h1>
+        <PortableTextCustom data={dataInicio.heroH2} client:only="react" />
+        <p>{dataInicio.heroP}</p>
+        <div class="btn">{dataInicio.heroBtn}</div>
+      </div>
+      <div class="col__right">
+        <Picture
+          src={dataInicio.heroImg.media.url}
+          alt={dataInicio.heroImg.alt.altText}
+          formats={["webp", "avif"]}
+          fallbackFormat="jpeg"
+          inferSize={true}
+          quality={"high"}
+          densities={[1.5, 2]}
+        />
+      </div>
+    </div>
+  </section>
+  <section id="intro">
+    <div class="column__2">
+      <div class="col__left">
+        <h3>/{dataInicio.introH3}</h3>
+        <h2>{dataInicio.introH2}</h2>
+        <div class="btn">{dataInicio.introBtn}</div>
+      </div>
+      <div class="col__right">
+        <Picture
+          src={dataInicio.introImg1.media.url}
+          alt={dataInicio.introImg1.alt.altText}
+          formats={["webp", "avif"]}
+          fallbackFormat="jpeg"
+          inferSize={true}
+          quality={"high"}
+          densities={[1.5, 2]}
+        />
+        <Picture
+          src={dataInicio.introImg2?.media.url}
+          alt={dataInicio.introImg2?.alt.altText}
+          formats={["webp", "avif"]}
+          fallbackFormat="jpeg"
+          inferSize={true}
+          quality={"high"}
+          densities={[1.5, 2]}
+        />
+      </div>
+    </div>
+  </section>
+  <section id="recentProducts">
+    <div class="column__1">
+      <h3></h3>
+      <ul role="list" class="listado__x3">
+        {
+          dataInicio.recentProdRef.recentProducts
+            .sort(
+              (a, b) =>
+                new Date(a.publishedAt).getTime() -
+                new Date(b.publishedAt).getTime()
+            )
+            .map((data) => (
+              <CardProduct
+                className="card__recentProduct"
+                data={data}
+                from="productos"
+              >
+                <Picture
+                  src={data.mainImage.media.url}
+                  alt={data.mainImage.alt.altText}
+                  formats={["webp", "avif"]}
+                  fallbackFormat="jpeg"
+                  inferSize={true}
+                  quality={"high"}
+                  densities={[1.5, 2]}
+                />
+              </CardProduct>
+            ))
+        }
+      </ul>
+    </div>
+  </section>
+  <Welcome />
+</Layout>

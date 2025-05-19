@@ -1,0 +1,31 @@
+---
+import type { GetStaticPaths } from "astro";
+import {
+  getDataArticles,
+  getDataArticlesBySlug,
+} from "../../_data/blog-articles";
+import type { Articles } from "../../_types/blog-articles";
+import Layout from "../../layouts/Layout.astro";
+
+// getStaticPaths to obtain all slugs
+export const getStaticPaths: GetStaticPaths = async () => {
+  const articles = await getDataArticles();
+  return articles.map((article: Articles) => ({
+    params: { slug: article.slug.current },
+  }));
+};
+
+//Current product data page
+const { slug } = Astro.params;
+const dataArticle: Articles = await getDataArticlesBySlug(slug);
+---
+
+<Layout
+  title={dataArticle.titleseo}
+  desc={dataArticle.descseo}
+  keywords={dataArticle.keyseo}
+>
+  <section>
+    <h1>{dataArticle.title}</h1>
+  </section>
+</Layout>

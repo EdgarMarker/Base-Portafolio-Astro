@@ -1,0 +1,49 @@
+---
+import type { GetStaticPaths } from "astro";
+import {
+  getDataProductCategory,
+  getDataProductCategoryBySlug,
+  getDataProductByCategorySlug,
+} from "../../../_data/products-product";
+import type { Category } from "../../../_types/_globals";
+import Layout from "../../../layouts/Layout.astro";
+import type { Product } from "../../../_types/products-product";
+import CardProduct from "../../../components/ui/CardProduct";
+import { Picture } from "astro:assets";
+
+// getStaticPaths to obtain all slugs
+export const getStaticPaths: GetStaticPaths = async () => {
+  const category = await getDataProductCategory();
+  console.log(category);
+  return category.map((category: Category) => ({
+    params: { category: category.slug.current },
+  }));
+};
+
+//Current product data page
+const { category } = Astro.params;
+const dataCategory: Category = await getDataProductCategoryBySlug(category);
+const dataProductsByCategory: Product[] =
+  await getDataProductByCategorySlug(category);
+---
+
+<Layout>
+  <h1>{dataCategory.title}</h1>
+  <ul class="listado__x3" role="list">
+    {
+      dataProductsByCategory.map((data) => (
+        <CardProduct className="card__article" data={data} from="productos">
+          <Picture
+            src={data.mainImage.media.url}
+            alt={data.mainImage.alt.altText}
+            formats={["webp", "avif"]}
+            fallbackFormat="jpeg"
+            inferSize={true}
+            quality={"high"}
+            densities={[1.5, 2]}
+          />
+        </CardProduct>
+      ))
+    }
+  </ul>
+</Layout>
