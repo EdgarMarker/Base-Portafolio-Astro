@@ -37,7 +37,7 @@ const homePageData = await getHomePageData();
       <div class="col__right">
         <Picture
           src={homePageData.hero.img_bg.media.url}
-          alt="background"
+          alt={homePageData.hero.img_bg.alt?.altText || ""}
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}
@@ -63,7 +63,7 @@ const homePageData = await getHomePageData();
       <div class="col__right">
         <Picture
           src={homePageData.intro.img_1.media.url}
-          alt="background"
+          alt={homePageData.intro.img_1.alt?.altText || ""}
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}
@@ -72,7 +72,7 @@ const homePageData = await getHomePageData();
         />
         <Picture
           src={homePageData.intro.img_2.media.url}
-          alt="background"
+          alt={homePageData.intro.img_2.alt?.altText || ""}
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}
@@ -101,7 +101,7 @@ const homePageData = await getHomePageData();
               >
                 <Picture
                   src={data.card.img_card.media.url}
-                  alt="background"
+                  alt={data.card.img_card.alt?.altText || ""}
                   formats={["webp", "avif"]}
                   fallbackFormat="jpeg"
                   inferSize={true}

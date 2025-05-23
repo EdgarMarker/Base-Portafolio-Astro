@@ -28,7 +28,7 @@ const aboutPageData = await getAboutPageData();
       <div class="col__right">
         <Picture
           src={aboutPageData.hero.img_hero.media.url}
-          alt="background"
+          alt={aboutPageData.hero.img_hero.alt?.altText || ""}
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}
@@ -51,7 +51,7 @@ const aboutPageData = await getAboutPageData();
       <div class="col__right">
         <Picture
           src={aboutPageData.intro.img_1.media.url}
-          alt="background"
+          alt={aboutPageData.intro.img_1.alt?.altText || ""}
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}
@@ -60,7 +60,7 @@ const aboutPageData = await getAboutPageData();
         />
         <Picture
           src={aboutPageData.intro.img_2.media.url}
-          alt="background"
+          alt={aboutPageData.intro.img_2.alt?.altText || ""}
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}

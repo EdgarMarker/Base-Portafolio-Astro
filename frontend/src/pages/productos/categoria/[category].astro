@@ -5,14 +5,14 @@ import CardProduct from "../../../components/ui/card/CardProduct";
 import { Picture } from "astro:assets";
 import {
   getAllCategoriesData,
-  getAllProductsDataByCategory
+  getAllProductsDataByCategory,
 } from "../../../_data/product.data";
 
 // getStaticPaths to obtain all slugs
 export const getStaticPaths: GetStaticPaths = async () => {
   const category = await getAllCategoriesData();
   return category.map((category) => ({
-    params: { category : category.category.slug.current },
+    params: { category: category.category.slug.current },
   }));
 };
 
@@ -23,14 +23,16 @@ console.log(productCategoryPage);
 ---
 
 <Layout>
-  <h1>Categorías y lista de productos que pertenecen a la categoría: {category}</h1>
+  <h1>
+    Categorías y lista de productos que pertenecen a la categoría: {category}
+  </h1>
   <ul class="listado__x3" role="list">
     {
       productCategoryPage.map((data) => (
         <CardProduct className="card__article" data={data} from="productos">
           <Picture
             src={data.card.img_card.media.url}
-            alt="background"
+            alt={data.card.img_card.alt?.altText || ""}
             formats={["webp", "avif"]}
             fallbackFormat="jpeg"
             inferSize={true}

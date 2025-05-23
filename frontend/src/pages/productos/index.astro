@@ -31,7 +31,7 @@ const recentProductData = await getProductData();
       <div class="col__right">
         <Picture
           src={productsPageData.hero.img_hero.media.url}
-          alt="background"
+          alt={productsPageData.hero.img_hero.alt?.altText || ""}
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}
@@ -58,7 +58,7 @@ const recentProductData = await getProductData();
             >
               <Picture
                 src={data.card.img_card.media.url}
-                alt="background"
+                alt={data.card.img_card.alt?.altText || ""}
                 formats={["webp", "avif"]}
                 fallbackFormat="jpeg"
                 inferSize={true}

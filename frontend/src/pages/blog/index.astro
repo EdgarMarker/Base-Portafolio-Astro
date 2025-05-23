@@ -30,7 +30,7 @@ const postData = await getPostData();
       <div class="col__right">
         <Picture
           src={blogPageData.hero.img_hero.media.url}
-          alt="background"
+          alt={blogPageData.hero.img_hero.alt?.altText || ""}
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}
@@ -47,7 +47,7 @@ const postData = await getPostData();
         <CardProduct className="card__article" data={data} from="blog">
           <Picture
           src={data.card.img_card.media.url}
-          alt="background"
+          alt={data.card.img_card.alt?.altText || ""}
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}

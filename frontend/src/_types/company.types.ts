@@ -1,4 +1,3 @@
-import type { string } from "astro:schema";
 import type { Block, Image } from "./_globals";
 
 export interface General {
@@ -12,6 +11,7 @@ export interface Social {
   string_urlFacebook: string;
   string_urlInstagram: string;
   string_urlLinkedin: string;
+  string_urlYt: string;
 }
 
 export interface Contact {

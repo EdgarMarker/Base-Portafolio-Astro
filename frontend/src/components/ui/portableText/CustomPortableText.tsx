@@ -26,7 +26,7 @@ const CustomPortableText = ({
           <CustomImg
             containerClassName={imgContainerClassName}
             src={urlFor(value).url()}
-            alt="Content image"
+            alt={value.alt.altText}
             width={800}
             height={600}
             category={category}

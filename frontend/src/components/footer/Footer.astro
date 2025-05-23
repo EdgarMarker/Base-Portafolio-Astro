@@ -43,6 +43,9 @@ const footerData = await getCompanyData();
       <GoBtn hasScroll={false} goToUrl={footerData.social.string_urlInstagram}
         >Instagram</GoBtn
       >
+      <GoBtn hasScroll={false} goToUrl={footerData.social.string_urlYt}
+        >YouTube</GoBtn
+      >
       <GoBtn hasScroll={false} goToUrl={footerData.social.string_urlLinkedin}
         >LinkedIn</GoBtn
       >
@@ -51,7 +54,7 @@ const footerData = await getCompanyData();
       <GoBtn hasScroll={false} goToUrl="/">
         <Picture
           src={footerData.general.img_logoFooter.media.url}
-          alt="background"
+          alt={footerData.general.img_logoFooter.alt.altText || ""}
           formats={["svg", "png"]}
           fallbackFormat="svg"
           inferSize={true}

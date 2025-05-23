@@ -48,11 +48,12 @@ const CustomImg = ({
   };
 
   const config = categoryConfig[category];
-
+  const altText = props.alt || "";
   return (
     <picture className={`imgContainer ${containerClassName} radius__24`}>
       <img
         {...props}
+        alt={altText}
         className="img"
         loading={
           props.priority !== undefined

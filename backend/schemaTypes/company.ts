@@ -98,8 +98,8 @@ export default {
           type: 'string',
         },
         {
-          name: 'string_urlTwitter',
-          title: 'Twitter',
+          name: 'string_urlYt',
+          title: 'YouTube',
           type: 'string',
         },
         {

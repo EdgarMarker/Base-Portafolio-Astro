@@ -1,4 +1,22 @@
-#header {
+:global(.mobileActive) {
+    display: none;
+  }
+  
+  :global(.mobileActive.is-active) {
+    display: block;
+  }
+  
+  :global(.menu-btn) {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #header {
     position: fixed;
     width: 100%;
     height: 60px;

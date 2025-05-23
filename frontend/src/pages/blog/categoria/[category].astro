@@ -29,7 +29,7 @@ const postCategoryPage = await getAllPostsDataByCategory({ category });
         <CardProduct className="card__article" data={data} from="blog">
           <Picture
             src={data.card.img_card.media.url}
-            alt="background"
+            alt={data.card.img_card.alt?.altText || ""}
             formats={["webp", "avif"]}
             fallbackFormat="jpeg"
             inferSize={true}
