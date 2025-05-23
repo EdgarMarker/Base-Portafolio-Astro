@@ -1,10 +1,25 @@
 ---
+import { getContactPageData } from "../../_data/contactPage.data";
+import CustomPortableText from "../../components/ui/portableText/CustomPortableText";
 import Layout from "../../layouts/Layout.astro";
 
-
+const contactPageData = await getContactPageData();
 ---
-<Layout>
-    <section>
-        <h1>Hello</h1>
-    </section>
+
+<Layout
+  title={contactPageData.seo.string_titleSeo}
+  desc={contactPageData.seo.text_dscSeo}
+  keywords={contactPageData.seo.text_keySeo}
+>
+  <section class="hero">
+    <div class="column__1">
+      <h1>{contactPageData.hero.string_h1}</h1>
+      <CustomPortableText
+        hasImg={false}
+        data={contactPageData.hero.block_info}
+        client:only="react"
+      />
+      <div class="btn">{contactPageData.hero.string_btn}</div>
+    </div>
+  </section>
 </Layout>

@@ -1,4 +1,4 @@
-#hero {
+#Hero {
     padding: 5%;
 
     .column__2 {
@@ -19,7 +19,7 @@
     }
 }
 
-#intro {
+#Intro {
     padding: 5%;
 
     .column__2 {
@@ -43,6 +43,6 @@
     }
 }
 
-#recentProducts {
+#RecentProducts {
     padding: 5%;
 }

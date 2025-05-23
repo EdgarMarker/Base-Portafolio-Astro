@@ -1,40 +1,35 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Layout from "../../../layouts/Layout.astro";
-import {
-  getDataArticlesByCategorySlug,
-  getDataArticlesCategory,
-  getDataArticlesCategoryBySlug,
-} from "../../../_data/blog-articles";
-import type { Category } from "../../../_types/_globals";
-import type { Articles } from "../../../_types/blog-articles";
-import CardProduct from "../../../components/ui/CardProduct";
+import CardProduct from "../../../components/ui/card/CardProduct";
 import { Picture } from "astro:assets";
+import {
+  getAllCategoriesData,
+  getAllPostsDataByCategory
+} from "../../../_data/post.data";
 
 // getStaticPaths to obtain all slugs
 export const getStaticPaths: GetStaticPaths = async () => {
-  const category = await getDataArticlesCategory();
-  return category.map((category: Category) => ({
-    params: { category: category.slug.current },
+  const category = await getAllCategoriesData();
+  return category.map((category) => ({
+    params: { category : category.category.slug.current },
   }));
 };
 
 //Current product data page
 const { category } = Astro.params;
-const dataCategory: Category = await getDataArticlesCategoryBySlug(category);
-const dataArticlesByCategory: Articles[] =
-  await getDataArticlesByCategorySlug(category);
+const postCategoryPage = await getAllPostsDataByCategory({ category });
 ---
 
 <Layout>
-  <h1>{dataCategory.title}</h1>
+  <h1>Categorías y lista de productos que pertenecen a la categoría: {category}</h1>
   <ul class="listado__x3" role="list">
     {
-      dataArticlesByCategory.map((data) => (
+      postCategoryPage.map((data) => (
         <CardProduct className="card__article" data={data} from="blog">
           <Picture
-            src={data.mainImage.media.url}
-            alt={data.mainImage.alt.altText}
+            src={data.card.img_card.media.url}
+            alt="background"
             formats={["webp", "avif"]}
             fallbackFormat="jpeg"
             inferSize={true}

@@ -1,37 +1,27 @@
-export interface Img {
+export interface Image {
+  _type: string;
   media: {
     url: string;
   };
-  alt: {
-    altText: string;
-  };
 }
 
-export interface BlockContent {
-  markDefs: any[];
-  style: string;
-  _key: string;
-  _type: string;
+export interface Block {
+  _type: "block";
   children: Array<{
-    _key: string;
-    _type: string;
+    _type: "span";
     text: string;
+    marks?: string[];
   }>;
+  style: string;
 }
 
-export interface Slug {
+export interface SEO {
+  string_titleSeo: string;
+  text_dscSeo: string;
+  text_keySeo: string;
+}
+
+export interface SLUG {
+  _type: "slug";
   current: string;
-}
-
-export interface Category {
-  titleseo: string;
-  descseo: string;
-  keyseo: string;
-  slug: Slug;
-  title: string;
-}
-
-export interface Author {
-  name: string;
-  bio: BlockContent[];
 }

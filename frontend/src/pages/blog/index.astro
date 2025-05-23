@@ -1,35 +1,36 @@
 ---
 import "../../styles/blog.css";
-import { getDataBlogPage } from "../../_data/blog";
-import { getDataArticles } from "../../_data/blog-articles";
 import Picture from "astro/components/Picture.astro";
-import type { Blog } from "../../_types/blog";
-import type { Articles } from "../../_types/blog-articles";
-import PortableTextCustom from "../../components/ui/PortableTextCustom";
 import Layout from "../../layouts/Layout.astro";
-import CardProduct from "../../components/ui/CardProduct";
+import CardProduct from "../../components/ui/card/CardProduct";
+import { getBlogPageData } from "../../_data/blogPage.data";
+import CustomPortableText from "../../components/ui/portableText/CustomPortableText";
+import { getPostData } from "../../_data/post.data";
 
-const dataBlog: Blog = await getDataBlogPage();
-const dataBlogArticles: Articles[] = await getDataArticles();
+const blogPageData = await getBlogPageData();
+const postData = await getPostData();
 ---
 
 <Layout
-  title={dataBlog.titleseo}
-  desc={dataBlog.descseo}
-  keywords={dataBlog.keyseo}
+  title={blogPageData.seo.string_titleSeo}
+  desc={blogPageData.seo.text_dscSeo}
+  keywords={blogPageData.seo.text_keySeo}
 >
   <section id="blog">
     <div class="column__2">
       <div class="col__left">
-        <h1>{dataBlog.heroH1}</h1>
-        <PortableTextCustom data={dataBlog.heroH2} client:only="react" />
-        <p>{dataBlog.heroP}</p>
-        <div class="btn">{dataBlog.heroBtn}</div>
+        <h1>{blogPageData.hero.string_h1}</h1>
+        <CustomPortableText
+          hasImg={false}
+          data={blogPageData.hero.block_info}
+          client:only="react"
+        />
+        <div class="btn">{blogPageData.hero.string_btn}</div>
       </div>
       <div class="col__right">
         <Picture
-          src={dataBlog.heroImg.media.url}
-          alt={dataBlog.heroImg.alt.altText}
+          src={blogPageData.hero.img_hero.media.url}
+          alt="background"
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}
@@ -42,18 +43,18 @@ const dataBlogArticles: Articles[] = await getDataArticles();
   <section id="blog__articles">
     <ul class="listado__x3">
       {
-        dataBlogArticles.map((data) => (
-          <CardProduct className="card__article" data={data} from="blog">
-            <Picture
-              src={data.mainImage.media.url}
-              alt={data.mainImage.alt.altText}
-              formats={["webp", "avif"]}
-              fallbackFormat="jpeg"
-              inferSize={true}
-              quality={"high"}
-              densities={[1.5, 2]}
-            />
-          </CardProduct>
+        postData.map((data) => (
+        <CardProduct className="card__article" data={data} from="blog">
+          <Picture
+          src={data.card.img_card.media.url}
+          alt="background"
+          formats={["webp", "avif"]}
+          fallbackFormat="jpeg"
+          inferSize={true}
+          quality={"high"}
+          densities={[1.5, 2]}
+          />
+        </CardProduct>
         ))
       }
     </ul>

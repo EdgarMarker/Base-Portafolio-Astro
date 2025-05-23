@@ -1,19 +1,19 @@
 ---
 import Picture from "astro/components/Picture.astro";
 import { getDataCompany } from "../../_data/company";
-import type { Company } from "../../_types/company";
 import { dataLink } from "./dataLinks";
 import OpenMenu from "../ui/btn/OpenMenu";
 import CloseMenu from "../ui/btn/CloseMenu";
+import { getCompanyData } from "../../_data/company.data";
 
-const dataNav: Company = await getDataCompany();
+const dataNav = await getCompanyData();
 ---
 
 <header id="header">
   <nav class="desktop">
     <Picture
-      src={dataNav.brandLogo.media.url}
-      alt={dataNav.brandLogo.alt.altText}
+      src={dataNav.general.img_logoNav.media.url}
+      alt="background"
       formats={["svg", "png"]}
       fallbackFormat="svg"
       inferSize={true}
@@ -34,8 +34,8 @@ const dataNav: Company = await getDataCompany();
   <nav class="mobile">
     <div class="mobile__head">
       <Picture
-        src={dataNav.brandLogo.media.url}
-        alt={dataNav.brandLogo.alt.altText}
+        src={dataNav.general.img_logoNav.media.url}
+        alt="background"
         formats={["svg", "png"]}
         fallbackFormat="svg"
         inferSize={true}
@@ -48,8 +48,8 @@ const dataNav: Company = await getDataCompany();
   <nav class="mobileActive">
     <div class="mobile__head">
       <Picture
-        src={dataNav.brandLogo.media.url}
-        alt={dataNav.brandLogo.alt.altText}
+        src={dataNav.general.img_logoNav.media.url}
+        alt="background"
         formats={["svg", "png"]}
         fallbackFormat="svg"
         inferSize={true}

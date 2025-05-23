@@ -2,27 +2,33 @@
 import "../../styles/us.css";
 
 import Layout from "../../layouts/Layout.astro";
-import { getDataUs } from "../../_data/us";
-import type { Us } from "../../_types/us";
-import PortableTextCustom from "../../components/ui/PortableTextCustom";
 import { Picture } from "astro:assets";
+import CustomPortableText from "../../components/ui/portableText/CustomPortableText";
+import { getAboutPageData } from "../../_data/aboutPage.data";
 
-const dataUs: Us = await getDataUs();
+const aboutPageData = await getAboutPageData();
 ---
 
-<Layout title={dataUs.titleseo} desc={dataUs.descseo} keywords={dataUs.keyseo}>
+<Layout
+  title={aboutPageData.seo.string_titleSeo}
+  desc={aboutPageData.seo.text_dscSeo}
+  keywords={aboutPageData.seo.text_keySeo}
+>
   <section id="hero">
     <div class="column__2">
       <div class="col__left">
-        <h1>{dataUs.heroH1}</h1>
-        <PortableTextCustom data={dataUs.heroH2} client:only="react" />
-        <p>{dataUs.heroP}</p>
-        <div class="btn">{dataUs.heroBtn}</div>
+        <h1>{aboutPageData.hero.string_h1}</h1>
+        <CustomPortableText
+          hasImg={false}
+          data={aboutPageData.hero.block_info}
+          client:only="react"
+        />
+        <div class="btn">{aboutPageData.hero.string_btn}</div>
       </div>
       <div class="col__right">
         <Picture
-          src={dataUs.heroImg.media.url}
-          alt={dataUs.heroImg.alt.altText}
+          src={aboutPageData.hero.img_hero.media.url}
+          alt="background"
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}
@@ -35,14 +41,17 @@ const dataUs: Us = await getDataUs();
   <section id="intro">
     <div class="column__2">
       <div class="col__left">
-        <h2>{dataUs.introH2}</h2>
-        <h3>{dataUs.introH3}</h3>
-        <PortableTextCustom data={dataUs.introRichText} client:only="react" />
+        <h3>{aboutPageData.intro.string_h3}</h3>
+        <CustomPortableText
+          hasImg={false}
+          data={aboutPageData.intro.block_info}
+          client:only="react"
+        />
       </div>
       <div class="col__right">
         <Picture
-          src={dataUs.introImg1.media.url}
-          alt={dataUs.introImg1.alt.altText}
+          src={aboutPageData.intro.img_1.media.url}
+          alt="background"
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}
@@ -50,8 +59,8 @@ const dataUs: Us = await getDataUs();
           densities={[1.5, 2]}
         />
         <Picture
-          src={dataUs.introImg2.media.url}
-          alt={dataUs.introImg2.alt.altText}
+          src={aboutPageData.intro.img_2.media.url}
+          alt="background"
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}

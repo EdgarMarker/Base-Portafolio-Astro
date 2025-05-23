@@ -2,6 +2,7 @@
 import ScrollSmootherProvider from "../_lib/gsap/ScrollSmootherProvider";
 import Footer from "../components/footer/Footer.astro";
 import Nav from "../components/nav/Nav.astro";
+import FormModal from "../components/ui/modal/FormModa";
 import "../styles/_globals.css";
 import "../styles/_reset.css";
 import "../styles/nav.css";
@@ -22,19 +23,15 @@ const { title, desc, keywords } = Astro.props;
     <meta name="keywords" content={keywords || "0, 0, 0, 0"} />
   </head>
   <body>
-    <Nav />
+    <Nav client:load />
     <ScrollSmootherProvider client:only="react">
       <slot />
-      <Footer />
+      <Footer client:load />
     </ScrollSmootherProvider>
+    <FormModal client:load />
   </body>
 </html>
 
 <style>
   html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
 </style>

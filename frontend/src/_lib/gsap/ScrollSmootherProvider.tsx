@@ -1,18 +1,25 @@
 import React, { useRef } from "react";
-import { tweenSmoother, useGSAP } from "./base";
+import { animationManager, useGSAP } from "./animation-manager";
 
 interface Props {
   children: React.ReactNode;
 }
 
 const ScrollSmootherProvider = ({ children }: Props) => {
-  const wrapper = useRef(null);
+  const wrapper = useRef<HTMLDivElement>(null);
+  const content = useRef<HTMLDivElement>(null);
+
   useGSAP(() => {
-    tweenSmoother();
-  }, [wrapper]);
+    if (typeof window === "undefined") return;
+    animationManager.initScrollSmoother();
+    animationManager.initBatchAnimations();
+  });
+
   return (
-    <div id="smooth-wrapper" ref={wrapper}>
-      <div id="smooth-content">{children}</div>
+    <div ref={wrapper} className="smooth-wrapper">
+      <div ref={content} className="smooth-content">
+        {children}
+      </div>
     </div>
   );
 };

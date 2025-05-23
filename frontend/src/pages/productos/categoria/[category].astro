@@ -1,41 +1,36 @@
 ---
 import type { GetStaticPaths } from "astro";
-import {
-  getDataProductCategory,
-  getDataProductCategoryBySlug,
-  getDataProductByCategorySlug,
-} from "../../../_data/products-product";
-import type { Category } from "../../../_types/_globals";
 import Layout from "../../../layouts/Layout.astro";
-import type { Product } from "../../../_types/products-product";
-import CardProduct from "../../../components/ui/CardProduct";
+import CardProduct from "../../../components/ui/card/CardProduct";
 import { Picture } from "astro:assets";
+import {
+  getAllCategoriesData,
+  getAllProductsDataByCategory
+} from "../../../_data/product.data";
 
 // getStaticPaths to obtain all slugs
 export const getStaticPaths: GetStaticPaths = async () => {
-  const category = await getDataProductCategory();
-  console.log(category);
-  return category.map((category: Category) => ({
-    params: { category: category.slug.current },
+  const category = await getAllCategoriesData();
+  return category.map((category) => ({
+    params: { category : category.category.slug.current },
   }));
 };
 
 //Current product data page
 const { category } = Astro.params;
-const dataCategory: Category = await getDataProductCategoryBySlug(category);
-const dataProductsByCategory: Product[] =
-  await getDataProductByCategorySlug(category);
+const productCategoryPage = await getAllProductsDataByCategory({ category });
+console.log(productCategoryPage);
 ---
 
 <Layout>
-  <h1>{dataCategory.title}</h1>
+  <h1>Categorías y lista de productos que pertenecen a la categoría: {category}</h1>
   <ul class="listado__x3" role="list">
     {
-      dataProductsByCategory.map((data) => (
+      productCategoryPage.map((data) => (
         <CardProduct className="card__article" data={data} from="productos">
           <Picture
-            src={data.mainImage.media.url}
-            alt={data.mainImage.alt.altText}
+            src={data.card.img_card.media.url}
+            alt="background"
             formats={["webp", "avif"]}
             fallbackFormat="jpeg"
             inferSize={true}

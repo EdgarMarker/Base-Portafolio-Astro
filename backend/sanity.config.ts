@@ -2,17 +2,29 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
-import { media } from 'sanity-plugin-media'
+import {structure} from './structure'
 
 export default defineConfig({
   name: 'default',
-  title: 'Astro-Base',
+  title: 'Astro-Base-Portfolio',
 
-  projectId: 'kn09smx2',
+  projectId: 'dvtu8lo9',
   dataset: 'production',
 
   plugins: [
     structureTool({
+      structure,
+    }),
+    visionTool(),
+  ],
+
+  schema: {
+    types: schemaTypes,
+  },
+})
+
+/*
+structureTool({
       structure: (
         S: any, // Usamos 'any' si no tienes un tipo más específico para `S`
       ) =>
@@ -125,11 +137,4 @@ export default defineConfig({
             ),
           ]),
     }),
-    visionTool(),
-    media()
-  ],
-
-  schema: {
-    types: schemaTypes,
-  },
-})
+*/

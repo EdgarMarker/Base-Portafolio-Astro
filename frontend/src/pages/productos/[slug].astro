@@ -1,31 +1,34 @@
 ---
 import type { GetStaticPaths } from "astro";
-import {
-  getDataProduct,
-  getDataProductBySlug,
-} from "../../_data/products-product";
-import type { Product } from "../../_types/products-product";
 import Layout from "../../layouts/Layout.astro";
+import { getProductData, getProductDataBySlug } from "../../_data/product.data";
+import CustomPortableText from "../../components/ui/portableText/CustomPortableText";
 
-// getStaticPaths to obtain all slugs
+// getStaticPaths solo para generar las rutas
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products = await getDataProduct();
-  return products.map((product: Product) => ({
-    params: { slug: product.slug.current },
+  const products = await getProductData();
+
+  return products.map((product) => ({
+    params: { slug: product.general.slug.current },
   }));
 };
 
-//Current product data page
-const { slug } = Astro.params;
-const dataProduct: Product = await getDataProductBySlug(slug);
+const slug = Astro.params.slug as string;
+const productDetailPage = await getProductDataBySlug({ slug });
 ---
 
 <Layout
-  title={dataProduct.titleseo}
-  desc={dataProduct.descseo}
-  keywords={dataProduct.keyseo}
+  title={productDetailPage.seo.string_titleSeo}
+  description={productDetailPage.seo.string_titleSeo}
+  image={productDetailPage.seo.text_keySeo}
 >
-  <section>
-    <h1>{dataProduct.title}</h1>
+  <section class="hero">
+    <h1>{productDetailPage.page.hero.string_h1}</h1>
+    <CustomPortableText
+      hasImg={false}
+      data={productDetailPage.page.hero.block_info}
+      client:only="load"
+    />
+    <div class="btn">{productDetailPage.page.hero.string_btn}</div>
   </section>
 </Layout>

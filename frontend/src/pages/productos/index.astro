@@ -2,35 +2,36 @@
 import "../../styles/products.css";
 
 import { Picture } from "astro:assets";
-import { getDataProducts } from "../../_data/products";
-import type { Products } from "../../_types/products";
-import PortableTextCustom from "../../components/ui/PortableTextCustom";
 import Layout from "../../layouts/Layout.astro";
-import CardProduct from "../../components/ui/CardProduct";
-import type { Product } from "../../_types/products-product";
-import { getDataProduct } from "../../_data/products-product";
+import CardProduct from "../../components/ui/card/CardProduct";
+import { getProductsPageData } from "../../_data/productsPage.data";
+import { getProductData } from "../../_data/product.data";
+import CustomPortableText from "../../components/ui/portableText/CustomPortableText";
 
-const dataProducts: Products = await getDataProducts();
-const dataProduct: Product[] = await getDataProduct();
+const productsPageData = await getProductsPageData();
+const recentProductData = await getProductData();
 ---
 
 <Layout
-  title={dataProducts.titleseo}
-  desc={dataProducts.descseo}
-  keywords={dataProducts.keyseo}
+  title={productsPageData.seo.string_titleSeo}
+  desc={productsPageData.seo.text_dscSeo}
+  keywords={productsPageData.seo.text_keySeo}
 >
   <section id="hero">
     <div class="column__2">
       <div class="col__left">
-        <h1>{dataProducts.heroH1}</h1>
-        <PortableTextCustom data={dataProducts.heroH2} client:only="react" />
-        <p>{dataProducts.heroP}</p>
-        <div class="btn">{dataProducts.heroBtn}</div>
+        <h1>{productsPageData.hero.string_h1}</h1>
+        <CustomPortableText
+          hasImg={false}
+          data={productsPageData.hero.block_info}
+          client:only="react"
+        />
+        <div class="btn">{productsPageData.hero.string_btn}</div>
       </div>
       <div class="col__right">
         <Picture
-          src={dataProducts.heroImg.media.url}
-          alt={dataProducts.heroImg.alt.altText}
+          src={productsPageData.hero.img_hero.media.url}
+          alt="background"
           formats={["webp", "avif"]}
           fallbackFormat="jpeg"
           inferSize={true}
@@ -43,11 +44,11 @@ const dataProduct: Product[] = await getDataProduct();
   <section id="products__product">
     <ul role="list" class="listado__x3">
       {
-        dataProduct
+        recentProductData
           .sort(
             (a, b) =>
-              new Date(a.publishedAt).getTime() -
-              new Date(b.publishedAt).getTime()
+              new Date(a.general.dateTime_publishedAt).getTime() -
+              new Date(b.general.dateTime_publishedAt).getTime()
           )
           .map((data) => (
             <CardProduct
@@ -56,8 +57,8 @@ const dataProduct: Product[] = await getDataProduct();
               from="productos"
             >
               <Picture
-                src={data.mainImage.media.url}
-                alt={data.mainImage.alt.altText}
+                src={data.card.img_card.media.url}
+                alt="background"
                 formats={["webp", "avif"]}
                 fallbackFormat="jpeg"
                 inferSize={true}
