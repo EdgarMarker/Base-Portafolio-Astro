@@ -4,14 +4,13 @@ import "../../styles/footer.css";
 import { Picture } from "astro:assets";
 import { dataLink } from "../nav/dataLinks";
 import { getCompanyData } from "../../_data/company.data";
-import GoBtn from "../ui/btn/GoBtn";
 
 const footerData = await getCompanyData();
 ---
 
 <footer id="footer">
-  <ul class="listado__x4" role="list">
-    <li>
+  <div class="column__1 listado__x4">
+    <div class="foot__item">
       <h3>Mapa del sitio</h3>
       <ul role="list">
         {
@@ -22,52 +21,81 @@ const footerData = await getCompanyData();
           ))
         }
       </ul>
-    </li>
-    <li class="footer__contact">
+    </div>
+      
+    <div class="foot__item">
       <h3>Datos de contacto</h3>
-      <a href={`tel:${footerData.contact.string_phone}`}
-        >T:{footerData.contact.string_phone}</a
-      >
-      <a href={`mailto:${footerData.contact.string_email}`}
-        >C:{footerData.contact.string_email}</a
-      >
-      <a href={`${footerData.contact.string_addressMapUrl}`}
-        >D:{footerData.contact.string_address}</a
-      >
-    </li>
-    <li class="footer__social">
+      <ul role="list">
+        <li>
+          <a href={`tel:${footerData.contact.string_phone}`}
+            >T:{footerData.contact.string_phone}</a
+          >
+        </li>
+        <li>
+          <a href={`mailto:${footerData.contact.string_email}`}
+            >C:{footerData.contact.string_email}</a
+          >
+        </li>
+        <li>
+          <a href={`${footerData.contact.string_addressMapUrl}`} target="_blank"
+            >D:{footerData.contact.string_address}</a
+          >
+        </li>
+      </ul>
+    </div>
+    
+    <div class="foot__item">
       <h3>Síguenos</h3>
-      <GoBtn hasScroll={false} goToUrl={footerData.social.string_urlFacebook}
-        >Facebook</GoBtn
-      >
-      <GoBtn hasScroll={false} goToUrl={footerData.social.string_urlInstagram}
-        >Instagram</GoBtn
-      >
-      <GoBtn hasScroll={false} goToUrl={footerData.social.string_urlYt}
-        >YouTube</GoBtn
-      >
-      <GoBtn hasScroll={false} goToUrl={footerData.social.string_urlLinkedin}
-        >LinkedIn</GoBtn
-      >
-    </li>
-    <li class="footer__logo">
-      <GoBtn hasScroll={false} goToUrl="/">
-        <Picture
-          src={footerData.general.img_logoFooter.media.url}
-          alt={footerData.general.img_logoFooter.alt.altText || ""}
-          formats={["svg", "png"]}
-          fallbackFormat="svg"
-          inferSize={true}
-          quality={"high"}
-          densities={[1.5, 2]}
-        />
-      </GoBtn>
-      <a href="/aviso-de-privacidad">Aviso de privacidad</a>
-    </li>
-  </ul>
-  <div>
-    {footerData.general.string_name} © Todos los derechos reservados | Sitio web
-    creado por
-    <a href="https://marker.com.mx/" target="_blank"> MARKER branding </a>
+      <ul role="list">
+        <li>
+          <a href={footerData.social.string_urlFacebook} target="_blank">
+            Facebook
+          </a>
+        </li>
+        <li>
+          <a href={footerData.social.string_urlInstagram} target="_blank">
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a href={footerData.social.string_urlYt} target="_blank">
+            YouTube
+          </a>
+        </li>
+        <li>
+          <a href={footerData.social.string_urlLinkedin} target="_blank">
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="foot__item">
+      <ul role="list">
+        <li>
+          <a class="footer__logo" href="/">
+            <Picture
+              src={footerData.general.img_logoFooter.media.url}
+              alt={footerData.general.img_logoFooter.alt.altText || ""}
+              formats={["svg", "png"]}
+              fallbackFormat="svg"
+              inferSize={true}
+              quality={"high"}
+              densities={[1.5, 2]}
+            />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="column__1 copyright">
+    <div class="copyright__item">
+      <span>
+        {footerData.general.string_name}
+        © Todos los derechos reservados | <a href="/aviso-de-privacidad">Aviso de privacidad</a> | Sitio web creado por
+      <a href="https://marker.com.mx/" target="_blank"> MARKER branding </a>
+      </span>
+    </div>
   </div>
 </footer>

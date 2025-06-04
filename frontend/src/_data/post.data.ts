@@ -44,7 +44,7 @@ const POST_FIELDS = `
             string_h1,
             block_info,
             string_btn,
-            img_hero{
+            img_bg{
                 "media": asset -> { url },
                 "alt": asset -> { altText }
             }

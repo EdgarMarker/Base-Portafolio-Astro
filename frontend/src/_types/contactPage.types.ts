@@ -6,6 +6,6 @@ export interface ContactPage {
     string_h1: string;
     block_info: Block[];
     string_btn: string;
-    img_hero: Image;
+    img_bg: Image;
   };
 }

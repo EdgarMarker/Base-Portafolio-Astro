@@ -1,5 +1,5 @@
-#hero {
-    padding: 8% 5%;
+.section__hero {
+    padding: 5%;
     background-color: var(--color-primary-dark);
     height: 100vh;
     margin-top: 0;
@@ -17,37 +17,10 @@
         .col__right {
             picture {
                 height: 80vh;
-                img {
-                    height: 100%;
-                    object-fit: cover;
-                    object-position: center;
-                }
-            }
-        }
-    }
-}
-
-#intro {
-    padding: 5%;
-
-    .column__2 {
-        .col__left {
-            justify-content: space-evenly;
-        }
-
-        .col__right {
-            flex-direction: row;
-            align-items: center;
-            gap: 2.5%;
-
-            picture {
-                width: 50%;
-                height: 50vh;
 
                 img {
                     height: 100%;
                     object-fit: cover;
-                    object-position: center;
                 }
             }
         }

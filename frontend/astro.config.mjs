@@ -18,5 +18,20 @@ export default defineConfig({
     projectId: VITE_SANITY_PROJECT_ID,
     dataset: VITE_SANITY_DATASET,
     useCdn: false,
-  }), react()],
+  }), react()
+  ],
+  vite: {
+    optimizeDeps: {
+      include: [
+        'gsap',
+        'gsap/ScrollTrigger',
+        'gsap/ScrollToPlugin',
+        'gsap/ScrollSmoother',
+        '@splidejs/react-splide'
+      ]
+    },
+    ssr: {
+      noExternal: ['gsap', '@splidejs/react-splide']
+    }
+  }
 });

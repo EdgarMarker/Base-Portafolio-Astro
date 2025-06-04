@@ -26,7 +26,7 @@ const recentProductData = await getProductData();
           data={productsPageData.hero.block_info}
           client:only="react"
         />
-        <div class="btn">{productsPageData.hero.string_btn}</div>
+        <a class="btn">{productsPageData.hero.string_btn}</a>
       </div>
       <div class="col__right">
         <Picture
@@ -42,32 +42,34 @@ const recentProductData = await getProductData();
     </div>
   </section>
   <section id="products__product">
-    <ul role="list" class="listado__x3">
-      {
-        recentProductData
-          .sort(
-            (a, b) =>
-              new Date(a.general.dateTime_publishedAt).getTime() -
-              new Date(b.general.dateTime_publishedAt).getTime()
-          )
-          .map((data) => (
-            <CardProduct
-              className="card__recentProduct"
-              data={data}
-              from="productos"
-            >
-              <Picture
-                src={data.card.img_card.media.url}
-                alt={data.card.img_card.alt?.altText || ""}
-                formats={["webp", "avif"]}
-                fallbackFormat="jpeg"
-                inferSize={true}
-                quality={"high"}
-                densities={[1.5, 2]}
-              />
-            </CardProduct>
-          ))
-      }
-    </ul>
+    <div class="column__1">
+      <ul role="list" class="listado__x3">
+        {
+          recentProductData
+            .sort(
+              (a, b) =>
+                new Date(a.general.dateTime_publishedAt).getTime() -
+                new Date(b.general.dateTime_publishedAt).getTime()
+            )
+            .map((data) => (
+              <CardProduct
+                className="card__recentProduct"
+                data={data}
+                from="productos"
+              >
+                <Picture
+                  src={data.card.img_card.media.url}
+                  alt={data.card.img_card.alt?.altText || ""}
+                  formats={["webp", "avif"]}
+                  fallbackFormat="jpeg"
+                  inferSize={true}
+                  quality={"high"}
+                  densities={[1.5, 2]}
+                />
+              </CardProduct>
+            ))
+        }
+      </ul>
+    </div>
   </section>
 </Layout>

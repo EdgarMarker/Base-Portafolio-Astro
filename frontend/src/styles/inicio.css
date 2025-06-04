@@ -1,18 +1,26 @@
 #Hero {
     padding: 5%;
-
+    background-color: var(--color-primary-dark);
+    height: 100vh;
+    margin-top: 0;
     .column__2 {
         .col__left {
             justify-content: center;
+            h2{
+                font-size: var(--size-2xl);
+                color: var(--color-secondary-light)
+            }
+            p{
+                color: var(--color-white);
+            }
         }
-
         .col__right {
             picture {
                 height: 80vh;
-
                 img {
                     height: 100%;
                     object-fit: cover;
+                    object-position: center;
                 }
             }
         }
@@ -21,10 +29,9 @@
 
 #Intro {
     padding: 5%;
-
     .column__2 {
         .col__left {
-            justify-content: space-between;
+            justify-content: flex-start;
         }
 
         .col__right {
@@ -44,5 +51,35 @@
 }
 
 #RecentProducts {
-    padding: 5%;
+    padding: 5% 5% 0%;
+    .column__1{
+        ul{
+            margin-top: 3%;
+            width: 100%;
+        }
+    }
+}
+
+#Testimonials{
+    padding: 8% 5% 8%;
+    .column__1{
+        .testy__cardHead{
+            picture{
+                img{
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+}
+
+.splide {
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+}
+
+.splide__slide {
+  min-width: 300px;
 }

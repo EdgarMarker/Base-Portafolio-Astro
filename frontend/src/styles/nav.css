@@ -1,12 +1,10 @@
 :global(.mobileActive) {
     display: none;
   }
-  
-  :global(.mobileActive.is-active) {
+:global(.mobileActive.is-active) {
     display: block;
   }
-  
-  :global(.menu-btn) {
+:global(.menu-btn) {
     background: transparent;
     border: none;
     cursor: pointer;
@@ -15,8 +13,7 @@
     align-items: center;
     justify-content: center;
   }
-
-  #header {
+#header {
     position: fixed;
     width: 100%;
     height: 60px;
@@ -25,46 +22,62 @@
     nav.mobile {
         display: none;
     }
-
     nav.mobileActive {
         display: none;
     }
-
     nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 2.5%;
-
+        padding: 0 5%;
+        height: 60px;
+        background-color: var(--color-white);
         picture {
-            width: 60px;
-            height: 60px;
+            width: auto;
+            height: auto;
 
             img {
-                height: 100%;
-                object-fit: contain;
+                height: 40px;
+                width: auto;
             }
         }
-
         ul {
             display: flex;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: 60px;
-            justify-items: center;
+            flex-direction: row;
+            justify-items: stretch;
             align-items: center;
-            gap: 2.5%;
-
+            gap: 30px;
+            height: 100%;
             li {
                 margin: 0;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                a{
+                    color: var(--color-primary);
+                    font-size: 16px;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    transition: color 0.3s ease-in-out;
+                    &:hover{
+                        color: var(--color-secondary);
+                    }
+                }
             }
         }
-
         .btn {
-            height: 30px;
+            background-color: var(--color-secondary);
+            font-size: 16px;
+            padding: 14px 20px;
         }
     }
 }
+
 
 @media only screen and (max-width: 1024px) {
     #header {

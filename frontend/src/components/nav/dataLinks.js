@@ -1,6 +1,6 @@
 export const dataLink = [
     {
-      name: "Home",
+      name: "Inicio",
       link: "/",
     },
     {

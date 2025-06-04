@@ -7,6 +7,8 @@ import FormModal from "../components/ui/modal/FormModa";
 import "../styles/_globals.css";
 import "../styles/_reset.css";
 import "../styles/nav.css";
+import "@splidejs/react-splide/css";
+import "@splidejs/react-splide";
 
 const { title, desc, keywords } = Astro.props;
 const companyData = await getCompanyData();
@@ -26,10 +28,10 @@ const companyData = await getCompanyData();
   </head>
   <body>
     <Nav data={companyData} client:load />
-    <ScrollSmootherProvider client:only="react">
-      <slot />
-      <Footer client:load />
-    </ScrollSmootherProvider>
+      <ScrollSmootherProvider client:only="react">
+        <slot />
+        <Footer client:load />
+      </ScrollSmootherProvider>
     <FormModal client:load />
   </body>
 </html>

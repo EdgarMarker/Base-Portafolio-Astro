@@ -1,27 +1,27 @@
 // @ts-nocheck
-"use client";
 import "@splidejs/react-splide/css";
 import React, { useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import CustomImg from "../img/CustomImg";
 import CustomPortableText from "../portableText/CustomPortableText";
+import "../../../styles/testimonials.css";
 
 export interface Props {
   data: {
-    ref_testimonials: {
+    arrRef_testimonials: {
       img_stars: { media: { url: string } }[];
       block_info: any;
       string_name: string;
     }[];
   };
 }
-const TestySlider = ({}) => {
+const TestySlider = ({ data }) => {
   const [optionScreen, setOptionScreen] = React.useState({
     perPage: 3,
     type: "loop",
     gap: "5%",
     perMove: 1,
-    pagination: false,
+    pagination: true,
   });
   useEffect(() => {
     const updateOptions = () => {
@@ -39,24 +39,14 @@ const TestySlider = ({}) => {
     };
   }, []);
   return (
-    <Splide options={optionScreen}>
-      {data.ref_testimonials.map((item, idx) => (
+    <Splide className="testy__wrapper" options={optionScreen}>
+      {data.arrRef_testimonials.map((item, idx) => (
         <SplideSlide key={idx}>
           <div className="testy__card radius__24">
             <div className="testy__cardHead">
-              <ul>
-                {item.img_stars.map((item, idx) => (
-                  <CustomImg
-                    key={idx}
-                    containerClassName="testy__cardHeadStarsContainer"
-                    src={item.media.url}
-                    alt="calificaciones de estrellas"
-                    width={50}
-                    height={50}
-                    quality={75}
-                  />
-                ))}
-              </ul>
+              <div className="testy__stars">
+                <div style={{width: `${item.grade}%`}}></div>
+              </div>
               <CustomPortableText hasImg={false} data={item.block_info} />
             </div>
             <p className="testy__cardName">{item.string_name}</p>

@@ -2,23 +2,17 @@
 
 :root {
   /* Base color */
-  --color-primary: #119a44;
-  --color-secondary: #11602e;
-  --color-accent: #119a44;
+  --color-primary: #013a63;
+  --color-primary-light: #1887d6;
+  --color-primary-dark: #012a4a;
 
-  --color-primary-light: #d9d9d9;
-  --color-secondary-light: #eaeae8;
+  --color-secondary: #d90429;
+  --color-secondary-light: #ef233c;
+  --color-secondary-dark: #a3001b;
 
-  --color-primary-dark: #1e282f;
-  --color-secondary-dark: #484747;
-
+  --color-accent: #63c8ff;
   --color-white: #f5f5f3;
-  --color-black: #1e282f;
-  --color-blue-light: #1593d4;
-  --color-blue: #203781;
-  --color-green-light: #cfe8d8;
-  --color-green: #11602e;
-  --color-yellow: #f5eb2f;
+  --color-black: #192229;
 
   /* Messages color */
   --color-success: #3ec43e;
@@ -31,8 +25,8 @@
   --size-md: 1.1vw;
   --size-lg: 1.6vw;
   --size-xl: 2vw;
-  --size-2xl: 3vw;
-  --size-3xl: 4vw;
+  --size-2xl: 2.8vw;
+  --size-3xl: 3.8vw;
 
   /* Tipografías */
   --font-primary: primary;
@@ -45,78 +39,78 @@
 @font-face {
   font-family: primary;
   font-style: normal;
-  font-weight: 200;
-  src: url(../assets/fonts/vagrounded_thin.woff);
+  font-weight: 400;
+  src: url(../assets/fonts/arvo/arvo_regular.woff);
 }
 
 @font-face {
   font-family: primary;
-  font-style: light;
-  font-weight: 300;
-  src: url(../assets/fonts/vagrounded_light.woff);
+  font-style: italic;
+  font-weight: 400;
+  src: url(../assets/fonts/arvo/arvo_italic.woff);
 }
 
 @font-face {
   font-family: primary;
   font-style: normal;
   font-weight: 600;
-  src: url(../assets/fonts/vagrounded_bold.woff);
+  src: url(../assets/fonts/arvo/arvo_bold.woff);
 }
 
 @font-face {
   font-family: primary;
-  font-style: normal;
-  font-weight: 700;
-  src: url(../assets/fonts/vagrounded_black.woff);
+  font-style: italic;
+  font-weight: 600;
+  src: url(../assets/fonts/arvo/arvo_bold_italic.woff);
 }
 
 @font-face {
   font-family: secondary;
   font-style: normal;
   font-weight: 200;
-  src: url(../assets/fonts/onest_thin.woff);
+  src: url(../assets/fonts/onest/onest_thin.woff);
 }
 
 @font-face {
   font-family: secondary;
   font-style: normal;
   font-weight: 300;
-  src: url(../assets/fonts/onest_light.woff);
+  src: url(../assets/fonts/onest/onest_light.woff);
 }
 
 @font-face {
   font-family: secondary;
   font-style: normal;
   font-weight: 400;
-  src: url(../assets/fonts/onest_regular.woff);
+  src: url(../assets/fonts/onest/onest_regular.woff);
 }
 
 @font-face {
   font-family: secondary;
   font-style: normal;
   font-weight: 500;
-  src: url(../assets/fonts/onest_semi_bold.woff);
+  src: url(../assets/fonts/onest/onest_semi_bold.woff);
 }
 
 @font-face {
   font-family: secondary;
   font-style: normal;
   font-weight: 600;
-  src: url(../assets/fonts/onest_bold.woff);
+  src: url(../assets/fonts/onest/onest_bold.woff);
 }
 
 @font-face {
   font-family: secondary;
   font-style: normal;
   font-weight: 700;
-  src: url(../assets/fonts/onest_extra_bold.woff);
+  src: url(../assets/fonts/onest/onest_extra_bold.woff);
 }
 
 @font-face {
   font-family: secondary;
   font-style: normal;
   font-weight: 800;
-  src: url(../assets/fonts/onest_black.woff);
+  src: url(../assets/fonts/onest/onest_black.woff);
 }
 
 *,
@@ -154,27 +148,7 @@ p a {
   display: inline;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-a,
-blockquote,
-i,
-b,
-u,
-em {
-  font-size: inherit;
-  font-weight: inherit;
-  font-style: inherit;
-  text-decoration: none;
-  color: inherit;
-  display: inline-block;
-}
+
 
 strong {
   font-weight: 600;

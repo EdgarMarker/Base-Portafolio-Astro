@@ -1,8 +1,10 @@
 ---
+import "../../styles/products.css";
 import type { GetStaticPaths } from "astro";
 import Layout from "../../layouts/Layout.astro";
 import { getProductData, getProductDataBySlug } from "../../_data/product.data";
 import CustomPortableText from "../../components/ui/portableText/CustomPortableText";
+import { Picture } from "astro:assets";
 
 // getStaticPaths solo para generar las rutas
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -22,8 +24,36 @@ const productDetailPage = await getProductDataBySlug({ slug });
   description={productDetailPage.seo.string_titleSeo}
   image={productDetailPage.seo.text_keySeo}
 >
-  <section class="hero">
-    <h1>{productDetailPage.page.hero.string_h1}</h1>
+  <section class="section__hero">
+    <div class="column__1">
+      <div class="breadcrumb">
+        <span>
+          <a href="/productos">Productos</a>
+          /
+          {productDetailPage.general?.arrRef_category.length > 0 &&
+          productDetailPage.general.arrRef_category.map((category) => (
+          <a
+            href={`/productos/categoria/${category.category.slug.current ?? ""}`}
+          >
+            {category.category.string_title}
+          </a>
+        ))}
+        /
+        </span>
+      </div>
+      <h1>{productDetailPage.page.hero.string_h1}</h1>
+      <Picture
+        src={productDetailPage.page.hero.img_bg.media.url}
+        alt={productDetailPage.page.hero.img_bg.alt?.altText || ""}
+        formats={["webp", "avif"]}
+        fallbackFormat="jpeg"
+        inferSize={true}
+        quality={"high"}
+        densities={[1.5, 2]}
+          />
+    </div>
+  </section>
+  <section class="section__content">
     <CustomPortableText
       hasImg={false}
       data={productDetailPage.page.hero.block_info}

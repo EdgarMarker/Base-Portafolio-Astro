@@ -18,6 +18,10 @@ export default {
       name: 'rProducts',
       title: 'Productos recientes',
     },
+    {
+      name: 'testimonials',
+      title: 'Testimonios',
+    },
   ],
   fields: [
     {
@@ -128,6 +132,20 @@ export default {
           title: 'Productos recientes',
           type: 'array',
           of: [{type: 'reference', to: [{type: 'product'}]}],
+        },
+      ],
+    },
+    {
+      name: 'testimonials',
+      title: 'Testimonios',
+      group: 'testimonials',
+      type: 'object',
+      fields: [
+        {
+          name: 'arrRef_testimonials',
+          title: 'Testimonios',
+          type: 'array',
+          of: [{type: 'reference', to: [{type: 'testimonials'}]}],
         },
       ],
     },

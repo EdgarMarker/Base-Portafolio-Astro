@@ -54,6 +54,13 @@ const HOME_FIELDS = `
         }
       }
     }
+  },
+  testimonials{
+    arrRef_testimonials[]-> {
+      string_name,
+      block_info,
+      grade,
+    }
   }
 `;
 

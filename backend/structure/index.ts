@@ -9,9 +9,9 @@ export const structure: StructureResolver = (S) =>
   S.list()
     .title('Contenido')
     .items([
-      S.listItem().icon(DesktopIcon).title('Home').child(
+      S.listItem().icon(DesktopIcon).title('Inicio').child(
         S.documentTypeList('home') // Tipo de documento: pages
-          .title('Home')
+          .title('Inicio')
           .filter('_type == "home"'),
       ),
       S.listItem().icon(DesktopIcon).title('Productos').child(
@@ -37,25 +37,25 @@ export const structure: StructureResolver = (S) =>
 
       S.divider(),
 
-      S.listItem().icon(AiOutlineProduct).title('Producto').child(
+      S.listItem().icon(AiOutlineProduct).title('Lista de Productos').child(
         S.documentTypeList('product') // Tipo de documento: pages
-          .title('Producto')
+          .title('Lista de Productos')
           .filter('_type == "product"'),
       ),
-      S.listItem().icon(PiArticleNyTimesBold).title('Artículos').child(
+      S.listItem().icon(PiArticleNyTimesBold).title('Lista de Artículos').child(
         S.documentTypeList('post') // Tipo de documento: pages
-          .title('Artículos')
+          .title('Lista de Artículos')
           .filter('_type == "post"'),
       ),
-      S.listItem().icon(FaConciergeBell).title('Amenidades').child(
+      S.listItem().icon(FaConciergeBell).title('Lista de Amenidades').child(
         S.documentTypeList('amenities') // Tipo de documento: pages
-          .title('Amenidades')
+          .title('Lista de Amenidades')
           .filter('_type == "amenities"'),
       ),
 
-      S.listItem().icon(BiMessageDetail).title('Testimonios').child(
+      S.listItem().icon(BiMessageDetail).title('Lista de Testimonios').child(
         S.documentTypeList('testimonials') // Tipo de documento: pages
-          .title('Testimonios')
+          .title('Lista de Testimonios')
           .filter('_type == "testimonials"'),
       ),
 

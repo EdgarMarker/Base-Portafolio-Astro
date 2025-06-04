@@ -1,4 +1,6 @@
 ---
+import "../../styles/blog.css";
+import Picture from "astro/components/Picture.astro";
 import type { GetStaticPaths } from "astro";
 import Layout from "../../layouts/Layout.astro";
 import { getPostData, getPostDataBySlug } from "../../_data/post.data";
@@ -22,13 +24,43 @@ const postDetailPage = await getPostDataBySlug({ slug });
   description={postDetailPage.seo.text_dscSeo}
   image={postDetailPage.seo.text_keySeo}
 >
-  <section class="hero">
-    <h1>{postDetailPage.page.hero.string_h1}</h1>
-    <CustomPortableText
-      hasImg={false}
-      data={postDetailPage.page.hero.block_info}
-      client:only="load"
-    />
-    <div class="btn">{postDetailPage.page.hero.string_btn}</div>
-  </section>
+  <article>
+    <section id="Hero">
+      <div class="column__1">
+        {postDetailPage.general?.arrRef_category.length > 0 &&
+        postDetailPage.general.arrRef_category.map((category) => (
+          <a
+            href={`/blog/categoria/${category.category.slug.current ?? ""}`}
+          >
+            {category.category.string_title}
+          </a>
+        ))}
+        
+        <h1>{postDetailPage.page.hero.string_h1}</h1>
+        <Picture
+              src={postDetailPage.page.hero.img_bg.media.url}
+              alt={postDetailPage.page.hero.img_bg.alt?.altText || ""}
+              formats={["webp", "avif"]}
+              fallbackFormat="jpeg"
+              inferSize={true}
+              quality={"high"}
+              densities={[1.5, 2]}
+          />
+      </div>
+    </section>
+    <section id="Content">
+      <div class="column__1">
+        <CustomPortableText
+          hasImg={false}
+          data={postDetailPage.page.hero.block_info}
+          client:only="load"
+          />
+        <a class="btn">{postDetailPage.page.hero.string_btn}</a>
+      </div>
+      
+    </section>
+    
+
+    
+  </article>
 </Layout>

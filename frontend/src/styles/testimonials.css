@@ -1,0 +1,93 @@
+.testy__wrapper{
+    width: 100%;
+    .splide__arrows{
+        width: 6em;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        top: -50px;
+        .splide__arrow{
+            position: relative;
+            top: unset;
+            bottom: unset;
+            transform: unset;
+            background-color: #fff;
+            opacity: 1;
+            &.splide__arrow--prev{
+                left: 0;
+            }
+            &.splide__arrow--next{
+                right: 0;
+            }
+            svg{
+                fill: var(--color-secondary-light);
+            }
+        }
+    }
+    .splide__track{
+        ul{
+            li{
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: stretch;
+                .testy__card{
+                    background-color: #fff;
+                    border-radius: 20px;
+                    padding: 5%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    .testy__cardHead{
+                        .testy__stars{
+                            width: 130px;
+                            aspect-ratio: 5/1;
+                            background-color: #00000020;
+                            -webkit-mask-image: url(../assets/stars.svg);
+                            mask-image: url(../assets/stars.svg);
+                            mask-repeat: no-repeat;
+                            margin-bottom: 20px;
+                            div{
+                                height: 100%;
+                                background-color: var(--color-secondary-light);
+                            }
+                        }
+                        .portableText{
+                            p{
+                                font-size: var(--size-sm);
+                            }
+                        }
+                    }
+                    .testy__cardName{
+                        font-size: var(--size-sm);
+                        color: var(--color-primary);
+                    }
+                }
+            }
+        }
+    }
+    .splide__pagination{
+        bottom: -30px;
+        gap: 2px;
+        li{
+            height: auto;
+            line-height: 0;
+            button{
+                background-color: var(--color-primary);
+                opacity: 1;
+                &.is-active{
+                    background-color: var(--color-secondary-light);
+                    transform: unset;
+                }
+            }
+        }
+    }
+}

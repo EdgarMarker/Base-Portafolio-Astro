@@ -1,17 +1,26 @@
 #blog {
-    padding: 5%;
-
+    padding: calc(5% + 60px) 5% 5%;
+    background-color: var(--color-primary-dark);
+    height: auto;
+    margin-top: 0px;
     .column__2 {
         .col__left {
             justify-content: center;
+            h2{
+                font-size: var(--size-2xl);
+                color: var(--color-secondary-light)
+            }
+            p{
+                color: var(--color-white);
+            }
         }
-
         .col__right {
             picture {
-                height: 80vh;
-
+                height: auto;
+                width: auto;
                 img {
-                    height: 100%;
+                    width: auto;
+                    height: 40vh;
                     object-fit: cover;
                     object-position: center;
                 }
@@ -21,5 +30,68 @@
 }
 
 #blog__articles {
-    padding: 5%;
+    padding: 8% 5%;
+    .column__1{
+        ul{
+            width: 100%;
+        }
+    }
+    
+}
+
+/* LISTADO CATEGORÍAS */
+#Resultado{
+    padding: 8% 5%;
+    .column__1{
+        h1{
+            margin-bottom: 0px;
+            span{
+                color: var(--color-secondary);
+                text-transform: capitalize;
+            }
+        }
+        .divisor{
+            height: 1px;
+            width: 100%;
+            background-color: var(--color-black);
+            opacity: 0.2;
+            margin: 2% 0%;
+        }
+        ul{
+            width: 100%;
+        }
+    }
+}
+
+/*  ARTÍCULO DETALLE  */
+article{
+    #Hero{
+        padding: calc(70px + 5%) 5% 0%;
+        margin-top: 0;
+        &::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            background-color: var(--color-accent);
+        }
+        .column__1{
+            max-width: 1400px;
+            h1{
+                color: var(--color-primary);
+                font-size: var(--size-xl);
+            }
+        }
+    }
+    #Content{
+        padding: 5% 5%;
+        .column__1{
+            max-width: 1400px;
+            p{
+                line-height: 1.6;
+            }
+        }
+    }
 }

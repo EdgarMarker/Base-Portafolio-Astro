@@ -41,23 +41,25 @@ const postData = await getPostData();
     </div>
   </section>
   <section id="blog__articles">
-    <ul class="listado__x3">
-      {
-        postData.map((data) => (
-        <CardProduct className="card__article" data={data} from="blog">
-          <Picture
-          src={data.card.img_card.media.url}
-          alt={data.card.img_card.alt?.altText || ""}
-          formats={["webp", "avif"]}
-          fallbackFormat="jpeg"
-          inferSize={true}
-          quality={"high"}
-          densities={[1.5, 2]}
-          />
-        </CardProduct>
-        ))
-      }
-    </ul>
+    <div class="column__1">
+      <ul class="listado__x3">
+        {
+          postData.map((data) => (
+          <CardProduct className="card__article" data={data} from="blog">
+            <Picture
+            src={data.card.img_card.media.url}
+            alt={data.card.img_card.alt?.altText || ""}
+            formats={["webp", "avif"]}
+            fallbackFormat="jpeg"
+            inferSize={true}
+            quality={"high"}
+            densities={[1.5, 2]}
+            />
+          </CardProduct>
+          ))
+        }
+      </ul>
+    </div>
   </section>
 </Layout>
 

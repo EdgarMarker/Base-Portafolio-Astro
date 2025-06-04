@@ -1,4 +1,5 @@
 ---
+import "../../../styles/products.css";
 import type { GetStaticPaths } from "astro";
 import Layout from "../../../layouts/Layout.astro";
 import CardProduct from "../../../components/ui/card/CardProduct";
@@ -7,6 +8,7 @@ import {
   getAllCategoriesData,
   getAllProductsDataByCategory,
 } from "../../../_data/product.data";
+
 
 // getStaticPaths to obtain all slugs
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -23,24 +25,27 @@ console.log(productCategoryPage);
 ---
 
 <Layout>
-  <h1>
-    Categorías y lista de productos que pertenecen a la categoría: {category}
-  </h1>
-  <ul class="listado__x3" role="list">
-    {
-      productCategoryPage.map((data) => (
-        <CardProduct className="card__article" data={data} from="productos">
-          <Picture
-            src={data.card.img_card.media.url}
-            alt={data.card.img_card.alt?.altText || ""}
-            formats={["webp", "avif"]}
-            fallbackFormat="jpeg"
-            inferSize={true}
-            quality={"high"}
-            densities={[1.5, 2]}
-          />
-        </CardProduct>
-      ))
-    }
-  </ul>
+  <section id="Resultado">
+    <div class="column__1">
+      <h1>Resultados para la categoría: <span>{category}</span></h1>
+      <div class="divisor"></div>
+      <ul class="listado__x3" role="list">
+        {
+          productCategoryPage.map((data) => (
+            <CardProduct className="card__article" data={data} from="productos">
+              <Picture
+                src={data.card.img_card.media.url}
+                alt={data.card.img_card.alt?.altText || ""}
+                formats={["webp", "avif"]}
+                fallbackFormat="jpeg"
+                inferSize={true}
+                quality={"high"}
+                densities={[1.5, 2]}
+              />
+            </CardProduct>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 </Layout>

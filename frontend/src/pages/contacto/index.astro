@@ -1,4 +1,6 @@
 ---
+import "../../styles/contact.css";
+import Picture from "astro/components/Picture.astro";
 import { getContactPageData } from "../../_data/contactPage.data";
 import CustomPortableText from "../../components/ui/portableText/CustomPortableText";
 import Layout from "../../layouts/Layout.astro";
@@ -11,15 +13,29 @@ const contactPageData = await getContactPageData();
   desc={contactPageData.seo.text_dscSeo}
   keywords={contactPageData.seo.text_keySeo}
 >
-  <section class="hero">
-    <div class="column__1">
-      <h1>{contactPageData.hero.string_h1}</h1>
-      <CustomPortableText
-        hasImg={false}
-        data={contactPageData.hero.block_info}
-        client:only="react"
-      />
-      <div class="btn">{contactPageData.hero.string_btn}</div>
+  <section class="section__hero">
+    <div class="column__2">
+      <div class="col__left">
+        <h1>{contactPageData.hero.string_h1}</h1>
+        <CustomPortableText
+          hasImg={false}
+          data={contactPageData.hero.block_info}
+          client:only="react"
+        />
+        <a class="btn">{contactPageData.hero.string_btn}</a>
+      </div>
+      <div class="col__right">
+        <Picture
+          src={contactPageData.hero.img_bg.media.url}
+          alt={contactPageData.hero.img_bg.alt?.altText || ""}
+          formats={["webp", "avif"]}
+          fallbackFormat="jpeg"
+          inferSize={true}
+          quality={"high"}
+          densities={[1.5, 2]}
+        />
+      </div>
+      
     </div>
   </section>
 </Layout>

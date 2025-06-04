@@ -1,14 +1,13 @@
 ---
 import "../styles/inicio.css";
-
 import Picture from "astro/components/Picture.astro";
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
 import CardProduct from "../components/ui/card/CardProduct.tsx";
 import { getHomePageData } from "../_data/homePage.data.ts";
 import CustomPortableText from "../components/ui/portableText/CustomPortableText.tsx";
-import PopBtn from "../components/ui/btn/PopBtn";
+//import PopBtn from "../components/ui/btn/PopBtn";
 import GoBtn from "../components/ui/btn/GoBtn";
+import TestySlider from "../components/ui/slider/TestySlider";
 
 const homePageData = await getHomePageData();
 ---
@@ -27,12 +26,18 @@ const homePageData = await getHomePageData();
           data={homePageData.hero.block_info}
           client:only="load"
         />
+        <GoBtn hasScroll={true} scrollTo="#Intro" client:load>
+          {homePageData.hero.string_btn}
+        </GoBtn>
+
+        <!-- 
         <PopBtn
           showModal={true}
           whichModal="formModal"
           text={homePageData.hero.string_btn}
           client:load
         />
+        -->
       </div>
       <div class="col__right">
         <Picture
@@ -114,6 +119,13 @@ const homePageData = await getHomePageData();
       </ul>
     </div>
   </section>
+  <section id="Testimonials">
+    <div class="column__1">
+      <h3>Testimonios</h3>
+      
+        <TestySlider data={homePageData.testimonials} client:load />
+      
+    </div>
+  </section>
 
-  <Welcome />
 </Layout>

@@ -21,14 +21,16 @@ const Nav = ({ data }: { data: Company }) => {
     <header id="header">
       {/* Navegación Desktop */}
       <nav className="desktop">
-        <CustomImg
-          src={data.general.img_logoNav.media.url}
-          alt={data.general.img_logoNav.alt?.altText || ""}
-          width={180}
-          height={60}
-          quality={70}
-          category="custom"
-        />
+        <a href="/">
+          <CustomImg
+            src={data.general.img_logoNav.media.url}
+            alt={data.general.img_logoNav.alt?.altText || ""}
+            width={180}
+            height={60}
+            quality={70}
+            category="custom"
+          />
+        </a>
         <ul role="list">
           {dataLink.map((data, index) => (
             <li key={index}>
@@ -36,7 +38,7 @@ const Nav = ({ data }: { data: Company }) => {
             </li>
           ))}
         </ul>
-        <div className="btn">Llamar</div>
+        <a className="btn">Llamar</a>
       </nav>
 
       {/* Navegación Mobile (Vista cerrada) */}
